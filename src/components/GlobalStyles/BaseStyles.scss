@@ -5,6 +5,9 @@
   --default-layout-header-height: 60px;
   --default-layout-width: 1150px;
   --default-layout-sidebar-width: 356px;
+
+  --primary-color: rgb(254, 44, 85);
+  --text-color: rgb(22, 24, 35);
 }
 
 * {
@@ -21,6 +24,19 @@ html {
 body {
   font-family: 'Poppins', sans-serif;
   font-size: 1.6rem;
+  color: var(--text-color);
   line-height: 1.6;
   text-rendering: optimizeSpeed;
+}
+
+input,
+button,
+[tabindex] {
+  border: none;
+  outline: none;
+}
+
+a[href] {
+  text-decoration: none;
+  color: var(--text-color);
 }
