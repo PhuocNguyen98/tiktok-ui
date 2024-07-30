@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(22, 24, 35, 0.05);
+  }
+
+  &:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.info {
+  flex: 1;
+  margin-left: 6px;
+}
+
+.name {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--text-color);
+  line-height: 1.6rem;
+}
+
+.check {
+  margin-left: 6px;
+  color: rgb(32, 213, 236);
+}
+
+.username {
+  font-size: 1.4rem;
+  color: rgba(22, 24, 35, 0.5);
+}
