@@ -8,6 +8,7 @@
   border-radius: 4px;
   border: 1px solid transparent;
   font-size: 1.6rem;
+  color: var(--text-color);
   font-weight: 700;
   user-select: none;
   cursor: pointer;
@@ -25,6 +26,11 @@
 .icon + .title,
 .title + .icon {
   margin-left: 6px;
+}
+
+.icon {
+  display: inline-flex;
+  width: 24px;
 }
 
 // Button types
