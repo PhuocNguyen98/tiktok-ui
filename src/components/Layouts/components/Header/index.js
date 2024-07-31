@@ -1,7 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCircleXmark,
-  faSpinner,
   faEllipsisVertical,
   faGlobe,
   faCircleQuestion,
@@ -11,20 +9,18 @@ import {
   faGear,
   faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
-import { useState, useEffect } from 'react';
 import Tippy from '@tippyjs/react';
-import TippyHeadless from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import images from '~/assets/img';
-import { Wrapper as PopperWrapper } from '~/components/Popper';
-import AccountItem from '~/components/AccountItem';
+
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
-import { UploadIcon, InboxIcon, MessageIcon, SearchIcon } from '~/components/Icons';
+import { UploadIcon, InboxIcon, MessageIcon } from '~/components/Icons';
 import Image from '~/components/Image';
+import Search from '../Search';
 
 const cx = classNames.bind(styles);
 
@@ -58,8 +54,6 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-  const [searchResult, setSearchResult] = useState([]);
-
   const currentUser = true;
   const userMenu = [
     {
@@ -86,8 +80,6 @@ function Header() {
     },
   ];
 
-  useEffect(() => {}, [searchResult]);
-
   // Xử lý logic
   const handleMenuChange = (menuItem) => {
     console.log(menuItem);
@@ -98,35 +90,7 @@ function Header() {
       <div className={cx('inner')}>
         <img src={images.logo} alt="Tiktok" />
 
-        <TippyHeadless
-          interactive
-          visible={searchResult.length > 0}
-          render={(attrs) => (
-            <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-              <PopperWrapper>
-                <h4 className={cx('search-title')}>Accounts</h4>
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-                <AccountItem />
-              </PopperWrapper>
-            </div>
-          )}
-        >
-          <div className={cx('search')}>
-            <input type="text" placeholder="Tìm kiếm" spellCheck="false" />
-
-            <button className={cx('clear')}>
-              <FontAwesomeIcon icon={faCircleXmark} />
-            </button>
-
-            <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-
-            <button className={cx('search-btn')}>
-              <SearchIcon className={cx('fill')} />
-            </button>
-          </div>
-        </TippyHeadless>
+        <Search />
 
         <div className={cx('action')}>
           {currentUser ? (
@@ -137,13 +101,13 @@ function Header() {
                 </button>
               </Tippy>
 
-              <Tippy content="Tin nhắn" delay={[0, 100]}>
+              <Tippy content="Message" delay={[0, 100]}>
                 <button className={cx('action-btn')}>
                   <MessageIcon />
                 </button>
               </Tippy>
 
-              <Tippy content="Hộp thư" delay={[0, 100]}>
+              <Tippy content="Inbox" delay={[0, 100]}>
                 <button className={cx('action-btn')}>
                   <InboxIcon />
                   <sup className={cx('badge')}>36</sup>
