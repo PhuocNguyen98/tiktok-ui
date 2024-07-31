@@ -42,7 +42,9 @@
   }
 
   input:not(:placeholder-shown) ~ .search-btn {
-    color: rgb(22, 24, 35);
+    .fill {
+      fill: rgb(22, 24, 35);
+    }
   }
 
   &:after {
@@ -61,8 +63,10 @@
   }
 
   &:hover .search-btn {
-    color: rgb(22, 24, 35);
     background-color: rgba(22, 24, 35, 0.06);
+    .fill {
+      fill: rgb(22, 24, 35);
+    }
   }
 }
 
@@ -116,6 +120,22 @@
   color: var(--text-color);
   padding: 4px 12px;
   cursor: pointer;
+  position: relative;
+
+  .badge {
+    height: 20px;
+    background-color: var(--primary-color);
+    font-size: 1.4rem;
+    font-family: 'TikTokFont', sans-serif;
+    border-radius: 10px;
+    color: var(--white-color);
+    position: absolute;
+    top: -2px;
+    right: 0;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 6px;
+  }
 }
 
 .user-avarta {
@@ -124,4 +144,5 @@
   object-fit: cover;
   border-radius: 50%;
   margin-left: 12px;
+  margin-top: 2px;
 }

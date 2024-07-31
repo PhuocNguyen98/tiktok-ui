@@ -1,5 +1,4 @@
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
   --default-layout-header-height: 60px;
@@ -24,11 +23,30 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'TikTokFont', sans-serif;
   font-size: 1.6rem;
   color: var(--text-color);
   line-height: 1.6;
   text-rendering: optimizeSpeed;
+}
+
+// Fonst embed
+@font-face {
+  font-family: 'TikTokFont';
+  src: url('/assets/fonts/TikTokFont-Regular.woff2');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'TikTokFont';
+  src: url('/assets/fonts/TikTokFont-Semibold.woff2');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'TikTokFont';
+  src: url('/assets/fonts/TikTokFont-Bold.woff2');
+  font-weight: 700;
 }
 
 input,

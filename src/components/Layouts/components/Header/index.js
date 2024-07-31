@@ -2,12 +2,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCircleXmark,
   faSpinner,
-  faMagnifyingGlass,
   faEllipsisVertical,
   faGlobe,
   faCircleQuestion,
   faKeyboard,
-  faCloudArrowUp,
   faUser,
   faCoins,
   faGear,
@@ -25,6 +23,8 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import AccountItem from '~/components/AccountItem';
 import Button from '~/components/Button';
 import Menu from '~/components/Popper/Menu';
+import { UploadIcon, InboxIcon, MessageIcon, SearchIcon } from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
@@ -123,7 +123,7 @@ function Header() {
             <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
 
             <button className={cx('search-btn')}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <SearchIcon className={cx('fill')} />
             </button>
           </div>
         </TippyHeadless>
@@ -131,9 +131,22 @@ function Header() {
         <div className={cx('action')}>
           {currentUser ? (
             <>
-              <Tippy content="Upload video" delay={[0, 200]}>
+              <Tippy content="Upload video" delay={[0, 100]}>
                 <button className={cx('action-btn')}>
-                  <FontAwesomeIcon icon={faCloudArrowUp} />
+                  <UploadIcon />
+                </button>
+              </Tippy>
+
+              <Tippy content="Tin nhắn" delay={[0, 100]}>
+                <button className={cx('action-btn')}>
+                  <MessageIcon />
+                </button>
+              </Tippy>
+
+              <Tippy content="Hộp thư" delay={[0, 100]}>
+                <button className={cx('action-btn')}>
+                  <InboxIcon />
+                  <sup className={cx('badge')}>36</sup>
                 </button>
               </Tippy>
             </>
@@ -143,7 +156,7 @@ function Header() {
 
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <img src={images.avatar} alt="Avatar" className={cx('user-avarta')} />
+              <Image src={images.avatar} alt="Avatar" className={cx('user-avarta')} />
             ) : (
               <button className={cx('more-btn')}>
                 <FontAwesomeIcon icon={faEllipsisVertical} />
