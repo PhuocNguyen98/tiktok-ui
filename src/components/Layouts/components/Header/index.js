@@ -7,9 +7,16 @@ import {
   faGlobe,
   faCircleQuestion,
   faKeyboard,
+  faCloudArrowUp,
+  faUser,
+  faCoins,
+  faGear,
+  faRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
-import Tippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import TippyHeadless from '@tippyjs/react/headless';
+import 'tippy.js/dist/tippy.css';
 
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
@@ -53,6 +60,32 @@ const MENU_ITEMS = [
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
 
+  const currentUser = true;
+  const userMenu = [
+    {
+      icon: <FontAwesomeIcon icon={faUser} />,
+      title: 'View profile',
+      to: '/@nguyenvana',
+    },
+    {
+      icon: <FontAwesomeIcon icon={faCoins} />,
+      title: 'Get coins',
+      to: '/coins',
+    },
+    {
+      icon: <FontAwesomeIcon icon={faGear} />,
+      title: 'Setting',
+      to: '/setting',
+    },
+    ...MENU_ITEMS,
+    {
+      icon: <FontAwesomeIcon icon={faRightFromBracket} />,
+      title: 'Log out',
+      to: '/logout',
+      separate: true,
+    },
+  ];
+
   useEffect(() => {}, [searchResult]);
 
   // Xử lý logic
@@ -65,7 +98,7 @@ function Header() {
       <div className={cx('inner')}>
         <img src={images.logo} alt="Tiktok" />
 
-        <Tippy
+        <TippyHeadless
           interactive
           visible={searchResult.length > 0}
           render={(attrs) => (
@@ -93,16 +126,29 @@ function Header() {
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
           </div>
-        </Tippy>
+        </TippyHeadless>
 
         <div className={cx('action')}>
-          <Button text>Upload</Button>
-          <Button primary>Log in</Button>
+          {currentUser ? (
+            <>
+              <Tippy content="Upload video" delay={[0, 200]}>
+                <button className={cx('action-btn')}>
+                  <FontAwesomeIcon icon={faCloudArrowUp} />
+                </button>
+              </Tippy>
+            </>
+          ) : (
+            <Button primary>Log in</Button>
+          )}
 
-          <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
-            <button className={cx('more-btn')}>
-              <FontAwesomeIcon icon={faEllipsisVertical} />
-            </button>
+          <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+            {currentUser ? (
+              <img src={images.avatar} alt="Avatar" className={cx('user-avarta')} />
+            ) : (
+              <button className={cx('more-btn')}>
+                <FontAwesomeIcon icon={faEllipsisVertical} />
+              </button>
+            )}
           </Menu>
         </div>
       </div>

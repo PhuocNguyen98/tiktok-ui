@@ -36,8 +36,31 @@ button,
 [tabindex] {
   border: none;
   outline: none;
+  background-color: transparent;
 }
 
 a[href] {
   text-decoration: none;
+}
+
+// Custom tooltip Tippy
+body {
+  .tippy-box {
+    border-radius: 8px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 2.2rem;
+    background-color: rgba(84, 84, 84, 0.92);
+  }
+
+  .tippy-content {
+    padding: 8px 9px;
+  }
+
+  .tippy-arrow {
+    color: rgba(84, 84, 84, 0.92);
+  }
+  .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+    top: -8px;
+  }
 }

@@ -97,9 +97,9 @@
   cursor: pointer;
 }
 
+// Actions
 .action {
   display: flex;
-  align-items: center;
 }
 
 .more-btn {
@@ -108,4 +108,20 @@
   margin-left: 24px;
   padding: 4px 8px;
   cursor: pointer;
+}
+
+.action-btn {
+  background-color: transparent;
+  font-size: 2.2rem;
+  color: var(--text-color);
+  padding: 4px 12px;
+  cursor: pointer;
+}
+
+.user-avarta {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 12px;
 }

@@ -36,8 +36,9 @@ function Menu({ children, items = [], onChange = defaultFnc }) {
 
   return (
     <Tippy
-      visible
+      // visible
       interactive
+      offset={[14, 10]}
       delay={(0, 200)}
       placement="bottom-end"
       render={(attrs) => (
@@ -56,6 +57,10 @@ function Menu({ children, items = [], onChange = defaultFnc }) {
           </PopperWrapper>
         </div>
       )}
+      onHide={() => {
+        setMenu((prev) => prev.slice(0, 1));
+        setTitleMenu('');
+      }}
     >
       {children}
     </Tippy>
