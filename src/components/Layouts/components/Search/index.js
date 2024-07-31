@@ -14,14 +14,24 @@ function Search() {
   const [searchValue, setsearchValue] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [showResult, setShowResult] = useState(true);
+  const [loadingResult, setLoadingResult] = useState(false);
 
   const inputRef = useRef();
 
   useEffect(() => {
-    setTimeout(() => {
-      setSearchResult([1, 2]);
-    }, 0);
-  }, []);
+    if (!searchValue.trim()) {
+      setSearchResult([]);
+      return;
+    }
+    setLoadingResult(true);
+    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+      .then((res) => res.json())
+      .then((res) => {
+        setSearchResult(res.data);
+        setLoadingResult(false);
+      })
+      .catch(() => setLoadingResult(false));
+  }, [searchValue]);
 
   const handleClear = () => {
     setsearchValue('');
@@ -41,10 +51,9 @@ function Search() {
         <div className={cx('search-result')} tabIndex="-1" {...attrs}>
           <PopperWrapper>
             <h4 className={cx('search-title')}>Accounts</h4>
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
-            <AccountItem />
+            {searchResult.map((result) => (
+              <AccountItem key={result.id} data={result} />
+            ))}
           </PopperWrapper>
         </div>
       )}
@@ -61,13 +70,13 @@ function Search() {
           onFocus={() => setShowResult(true)}
         />
 
-        {!!searchValue && (
+        {!!searchValue && !loadingResult && (
           <button className={cx('clear')} onClick={handleClear}>
             <FontAwesomeIcon icon={faCircleXmark} />
           </button>
         )}
 
-        {/* <FontAwesomeIcon className={cx('loading')} icon={faSpinner} /> */}
+        {loadingResult && <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />}
 
         <button className={cx('search-btn')}>
           <SearchIcon className={cx('fill')} />
