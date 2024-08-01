@@ -21,6 +21,11 @@
   padding: 0 var(--default-layout-horizontal-spacer);
 }
 
+// Logo
+.logo-link {
+  display: flex;
+}
+
 // Actions
 .action {
   display: flex;
@@ -46,7 +51,7 @@
     height: 20px;
     background-color: var(--primary-color);
     font-size: 1.4rem;
-    font-family: 'TikTokFont', sans-serif;
+    font-family: var(--font-family);
     border-radius: 10px;
     color: var(--white-color);
     position: absolute;
