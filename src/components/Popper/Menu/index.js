@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import style from './Menu.module.scss';
@@ -11,7 +12,6 @@ const defaultFnc = () => {};
 
 function Menu({ children, items = [], hideOnClick = false, onChange = defaultFnc }) {
   const [menu, setMenu] = useState([{ data: items }]);
-  const [titleMenu, setTitleMenu] = useState('');
   const currentMenu = menu[menu.length - 1];
 
   const renderItems = () => {
@@ -24,7 +24,6 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFnc
           onClick={() => {
             if (isParent) {
               setMenu((prev) => [...prev, item.children]);
-              setTitleMenu(item.children.title);
             } else {
               onChange(item);
             }
@@ -44,12 +43,11 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFnc
       render={(attrs) => (
         <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
           <PopperWrapper className={cx('menu-popper')}>
-            {titleMenu && (
+            {menu.length > 1 && (
               <Header
-                title={titleMenu}
+                title={currentMenu.title}
                 onBack={() => {
                   setMenu((prev) => prev.slice(0, prev.length - 1));
-                  setTitleMenu('');
                 }}
               />
             )}
@@ -59,12 +57,18 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFnc
       )}
       onHide={() => {
         setMenu((prev) => prev.slice(0, 1));
-        setTitleMenu('');
       }}
     >
       {children}
     </Tippy>
   );
 }
+
+Menu.propTypes = {
+  children: PropTypes.node.isRequired,
+  items: PropTypes.array,
+  hideOnClick: PropTypes.bool,
+  onChange: PropTypes.func,
+};
 
 export default Menu;

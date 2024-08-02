@@ -57,7 +57,20 @@ function Button({
 }
 
 Button.propTypes = {
+  to: PropTypes.string,
+  href: PropTypes.string,
+  leftIcon: PropTypes.node,
+  rightIcon: PropTypes.node,
+  primary: PropTypes.bool,
+  outline: PropTypes.bool,
+  text: PropTypes.bool,
+  rounded: PropTypes.bool,
+  small: PropTypes.bool,
+  large: PropTypes.bool,
+  disable: PropTypes.bool,
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default Button;
