@@ -1,8 +1,8 @@
 // Config Routes
-import configRoutes from '~/config/routes';
+import config from '~/config';
 
-// Layouts
-import { HeaderOnly } from '~/components/Layouts';
+// layouts
+import { HeaderOnly } from '~/layouts';
 
 // Pages
 import Home from '~/pages/Home';
@@ -16,11 +16,11 @@ const privateRoutes = [];
 
 // Những routes không cần đăng nhập
 const publicRoutes = [
-  { path: configRoutes.home, component: Home },
-  { path: configRoutes.following, component: Following },
-  { path: configRoutes.profile, component: Profile },
-  { path: configRoutes.upload, component: Upload, layout: HeaderOnly },
-  { path: configRoutes.search, component: Search, layout: null },
+  { path: config.routes.home, component: Home },
+  { path: config.routes.following, component: Following },
+  { path: config.routes.profile, component: Profile },
+  { path: config.routes.upload, component: Upload, layout: HeaderOnly },
+  { path: config.routes.search, component: Search, layout: null },
 ];
 
 export { privateRoutes, publicRoutes };
